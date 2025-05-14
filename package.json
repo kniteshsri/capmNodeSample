@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@sap/xssec": "^4.7.0",
+    "passport": "^0.7.0"
+  }
+}

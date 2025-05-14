@@ -1,0 +1,49 @@
+@host = http://localhost:4004
+@service = /odata/v4/catalog
+@auth = Basic alice:
+
+### Create new product (with variables)
+POST {{host}}{{service}}/Products
+Content-Type: application/json
+
+{
+    "ID": 3,
+    "name": "Bus",
+    "price": 5000000
+}
+
+### Get all products
+GET {{host}}{{service}}/Products
+Accept: application/json
+
+### Get single product
+GET {{host}}{{service}}/Products(1)
+Accept: application/json
+
+### Create new order
+POST {{host}}{{service}}/Orders
+Content-Type: application/json
+
+{
+  "ID": "42a7c34f-0e0b-4a22-8e5f-5b5c5e5e5e5g",
+  "items": [
+    {
+      "product_ID": 3,
+      "quantity": 50
+    }
+  ]
+}
+
+### Call custom action
+POST {{host}}{{service}}/OrderItems
+Content-Type: application/json
+
+{
+  "product_ID": 1,
+  "order_ID": "42a7c34f-0e0b-4a22-8e5f-5b5c5e5e5e5e",
+  "quantity": 5
+}
+
+### Get orders with expand
+GET {{host}}{{service}}/Orders?$expand=items
+Accept: application/json
